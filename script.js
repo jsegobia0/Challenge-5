@@ -92,11 +92,11 @@ var upperCasedCharacters = [
 function getPasswordOptions() {
   prompt("Password Options")
   var passwordOptions = {
-    length: 10 - 64;
-    specialChar: specialCharacters;
-    numericChar: numericCharacters;
-    lowerCased: lowerCasedCharacters;
-    upperCased: upperCasedCharacters;
+    length: 10 - 64,
+    specialChar: specialCharacters,
+    numericChar: numericCharacters,
+    lowerCased: lowerCasedCharacters,
+    upperCased: upperCasedCharacters,
   }
 
   return passwordOptions;
