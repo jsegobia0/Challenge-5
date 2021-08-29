@@ -92,7 +92,7 @@ var upperCasedCharacters = [
 function getPasswordOptions() {
   prompt("Password Options")
   var passwordOptions = {
-    length: 10 - 64,
+    length: 64,
     specialChar: specialCharacters,
     numericChar: numericCharacters,
     lowerCased: lowerCasedCharacters,
@@ -113,6 +113,7 @@ function getRandom(arr) {
 // Function to generate password with user input
 function generatePassword() {
   var specialCh = getRandom(specialCharacters)
+  console.log(specialCharacters)
   newpassword.push(specialCh);
 };
 
@@ -123,7 +124,6 @@ var generateBtn = document.querySelector('#generate');
 function writePassword() {
   var password = generatePassword();
   var passwordText = document.querySelector('#password');
-
   passwordText.value = password;
 };
 
