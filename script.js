@@ -88,76 +88,77 @@ var upperCasedCharacters = [
   'Z'
 ];
 
-var randomPassword;
+// empty array to push password choices
 var passwordOptions = [];
-var option;
+
+var randomPassword;
 
 // Function to prompt user for password options
 function getPasswordOptions() {
+  // loop for random option
+  for(var i = 0; i < passwordOptions.length; i++) {
+    // Special Characters
+    var special = confirm("Special Characters?");
+    // push characters into passwordOptions if Yes
+    if (special) {
+      passwordOptions.push(...specialCharacters);
+    }
+    console.log(passwordOptions);
 
-  // Special Characters
-  var special = confirm("Special Characters?");
-  // push characters into passwordOptions if Yes
-  if (special) {
-    passwordOptions.push(specialCharacters);
+    // Numeric Characters
+    var numeric = confirm("Numeric Characters?");
+    if (numeric) {
+      passwordOptions.push(...numericCharacters);
+    }
+    console.log(passwordOptions);
+
+    // Uppercased Characters
+    var upperCased = confirm("Uppercased Characters?");
+    if (upperCased) {
+      passwordOptions.push(...upperCasedCharacters);
+    }
+    console.log(passwordOptions);
+
+    // Lowercased Characters
+    var lowerCased = confirm("Lowercased Characters?");
+    if (lowerCased) {
+      passwordOptions.push(...lowerCasedCharacters);
+    }
+    console.log(passwordOptions);
+
+    // variable for length
+    var length = parseInt(prompt("How many characters?"));
+    // Checks if length is not less than 10 and noit greater than 64
+    if (length >=10 && length <=64) {
+      console.log(length);
+    } else {
+      alert("10 to 64 characters.");
+    }
   }
-  console.log(passwordOptions);
-
-  // Numeric Characters
-  var numeric = confirm("Numeric Characters?");
-  if (numeric) {
-    passwordOptions.push(numericCharacters);
-  }
-  console.log(passwordOptions);
-
-  // Uppercased Characters
-  var upperCased = confirm("Uppercased Characters?");
-  if (upperCased) {
-    passwordOptions.push(upperCasedCharacters);
-  }
-  console.log(passwordOptions);
-
-  // Lowercased Characters
-  var lowerCased = confirm("Lowercased Characters?");
-  if (lowerCased) {
-    passwordOptions.push(lowerCasedCharacters);
-  }
-  console.log(passwordOptions);
-
-  // variable for length
-  var length;
-  length = parseInt(prompt("How many characters?"));
-    
-  // Checks if length is not less than 10 and noit greater than 64
-  if (length >=10 && length <=64) {
-    return;
-  }
-
+  getRandom();
 }
 
 // Function for getting a random element from an array
 function getRandom() {
-  randomPassword = passwordOptions[Math.floor(Math.random() * passwordOptions.length)];
-  return;
+
 }
 
 // Function to generate password with user input
-function generatePassword() {
-  array.forEach(element => {
-    
-  });
-}
+// function generatePassword() {
+//   var options = getPasswordOptions();
+//   var result = [];
+// }
 
 // Get references to the #generate element
 var generateBtn = document.querySelector('#generate');
 
 // Write password to the #password input
 function writePassword() {
-  var password = generatePassword();
+  var password = getPasswordOptions();
   var passwordText = document.querySelector('#password');
 
   passwordText.value = password;
 }
 
 // Add event listener to generate button
-generateBtn.addEventListener('click', getPasswordOptions);
+generateBtn.addEventListener('click', writePassword);
