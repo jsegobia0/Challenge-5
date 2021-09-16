@@ -132,19 +132,20 @@ function getPasswordOptions() {
   if (length >=10 && length <=64) {
     return;
   }
-  getRandom();
 
 }
 
 // Function for getting a random element from an array
 function getRandom() {
-  randomPassword = [Math.floor(Math.random() * passwordOptions.length)];
+  randomPassword = passwordOptions[Math.floor(Math.random() * passwordOptions.length)];
   return;
 }
 
 // Function to generate password with user input
 function generatePassword() {
-
+  array.forEach(element => {
+    
+  });
 }
 
 // Get references to the #generate element
@@ -159,4 +160,4 @@ function writePassword() {
 }
 
 // Add event listener to generate button
-generateBtn.addEventListener('click', writePassword);
+generateBtn.addEventListener('click', getPasswordOptions);
