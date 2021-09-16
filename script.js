@@ -138,7 +138,10 @@ function getPasswordOptions() {
 
 // Function for getting a random element from an array
 function getRandom() {
-for (var i = 1; i < length; i++) {
+
+// loop through length chosen
+for (var i = 0; i < length; i++) {
+  // new array contains random characters with the character length chosen
   var options = passwordOptions[Math.floor(Math.random(i) * length)];
   return options[i];
   }
