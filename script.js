@@ -90,13 +90,12 @@ var upperCasedCharacters = [
 
 // empty array to push password choices
 var passwordOptions = [];
-
-var randomPassword;
+var length;
+var options;
 
 // Function to prompt user for password options
 function getPasswordOptions() {
-  // loop for random option
-  for(var i = 0; i < passwordOptions.length; i++) {
+
     // Special Characters
     var special = confirm("Special Characters?");
     // push characters into passwordOptions if Yes
@@ -126,28 +125,30 @@ function getPasswordOptions() {
     }
     console.log(passwordOptions);
 
-    // variable for length
-    var length = parseInt(prompt("How many characters?"));
+    // length of password wanted
+    length = parseInt(prompt("How many characters?"));
     // Checks if length is not less than 10 and noit greater than 64
     if (length >=10 && length <=64) {
       console.log(length);
     } else {
       alert("10 to 64 characters.");
     }
-  }
-  getRandom();
+
 }
 
 // Function for getting a random element from an array
 function getRandom() {
-
+for (var i = 1; i < length; i++) {
+  var options = passwordOptions[Math.floor(Math.random(i) * length)];
+  return options[i];
+  }
+  console.log(options[i]);
 }
 
 // Function to generate password with user input
-// function generatePassword() {
-//   var options = getPasswordOptions();
-//   var result = [];
-// }
+function generatePassword() {
+
+}
 
 // Get references to the #generate element
 var generateBtn = document.querySelector('#generate');
