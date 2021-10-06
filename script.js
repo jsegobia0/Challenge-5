@@ -88,97 +88,84 @@ var upperCasedCharacters = [
   'Z'
 ];
 
+
 // Function to prompt user for password options
 function getPasswordOptions() {
 
-  // Password length
-  var length = parseInt(prompt("Password length?"));
-  // Checks if length is not less than 10 and not greater than 64
-  if (length >=10 && length <=64) {
+    // Special Characters
+    var special = confirm("Special Characters?");
+    
+    // Numeric Characters
+    var numeric = confirm("Numeric Characters?");
+    
+    // Uppercased Characters
+    var upperCased = confirm("Uppercased Characters?");
+    
+    // Lowercased Characters
+    var lowerCased = confirm("Lowercased Characters?");
+    
+    // length of password wanted
+    var length = parseInt(prompt("How many characters?"));
+
+  // Checks if length is not less than 10 and noit greater than 64
+   if (length >=10 && length <=64) {
     console.log(length);
   } else {
     alert("10 to 64 characters.");
   }
 
-  // stores characters if true
-  var special = confirm ("Special characters?");
-  var numeric = confirm ("Numeric characters?");
-  var lowerCased = confirm ("Lowercased characters?");
-  var upperCased = confirm ("Uppercased characters?");
-
-  // stores cuser input
-  var passwordOptions = {
-    length: length,
-    special: special,
-    numeric: numeric,
-    lowerCased: lowerCased,
-    upperCased: upperCased,
-  };
-
-  return passwordOptions;
+    var options = {
+      length: length,
+      special: special,
+      numeric: numeric,
+      upperCased: upperCased,
+      lowerCased: lowerCased,
+    }
+    return options;
+   
 }
 
-// Function for getting a random element from an array
-function getRandom(arr) {
-  // selects random stored array
-  var randomCharacterType = Math.floor(Math.random() * arr.length);
-  // selects random character from within array
-  var randomCharacter = arr[randomCharacterType];
-  // gives random character a value
-  return randomCharacter;
+// Function for getting a password element from an array
+function getpassword() {
+  var randomPassword = passwordOptions[Math.floor(Math.password() * passwordOptions.length)];
+  return randomPassword;
 }
 
 // Function to generate password with user input
 function generatePassword() {
-  // calls get password function to get password options
+
+// calls booleons in options object
   var options = getPasswordOptions();
 
-  // stores result of chosen characters as 1 array
-  var randomPassword = [];
+// get password character
+  var passwordOptions = [];
 
-  // stores character types as an array
-  var characterType = [];
+// return 1 random password
+  var result = [],
 
-  // stores 1 of each character in an array
-  var characters = [];
-  
-  if(options.special) {
-    characterType = characterType.concat(numericCharacters);
-    characters.push(getRandom(specialCharacters));
+  // push characters into passwordOptions if Yes
+  if (options.special) {
+    passwordOptions.push(getpassword(...specialCharacters));
   }
+  console.log(passwordOptions);
 
-  if(options.numeric) {
-    characterType = characterType.concat(numericCharacters);
-    characters.push(getRandom(numericCharacters));
+  if (options.numeric) {
+    passwordTypes = [...numericCharacters];
+    passwordOptions.push(getpassword(...numericCharacters));
   }
+  console.log(passwordOptions);
 
-  if(options.lowerCased) {
-    characterType = characterType.concat(lowerCasedCharacters);
-    characters.push(getRandom(lowerCasedCharacters));
+  if (options.upperCased) {
+    passwordOptions.push(getpassword(...upperCasedCharacters));
   }
+  console.log(passwordOptions);
 
-  if(options.upperCased) {
-    characterType = characterType.concat(upperCasedCharacters);
-    characters.push(getRandom(upperCasedCharacters));
+  if (options.lowerCased) {
+    passwordOptions.push(getpassword(...lowerCasedCharacters));
   }
+  console.log(passwordOptions);
 
-  if(options.special) {
-    characterType = characterType.concat(upperCasedCharacters);
-    characters.push(getRandom(specialCharacters));
-  }
-
-  for (var i = 0; i < options.length; i++) {
-    var characterType = getRandom(characterType);
-
-    result.push(characterType);
-  }
-
-  for (var i = 0; i < characters.length; i++) {
-    randomPassword[i] = characters[i];
-  }
-
-  return randomPassword.join('');
-  
+  return result;
 }
 
 // Get references to the #generate element
