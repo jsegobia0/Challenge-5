@@ -91,18 +91,36 @@ var upperCasedCharacters = [
 
 // Function to prompt user for password options
 function getPasswordOptions() {
+  // empty array to store pushed options on confirm
+    var passwordOptions = [];
 
     // Special Characters
     var special = confirm("Special Characters?");
+    if (special) {
+      passwordOptions.push(specialCharacters);
+    }
+    console.log(passwordOptions);
     
     // Numeric Characters
     var numeric = confirm("Numeric Characters?");
+    if (numeric) {
+      passwordOptions.push(numericCharacters);
+    }
+    console.log(passwordOptions);
     
     // Uppercased Characters
     var upperCased = confirm("Uppercased Characters?");
+    if (upperCased) {
+      passwordOptions.push(upperCasedCharacters);
+    }
+    console.log(passwordOptions);
     
     // Lowercased Characters
     var lowerCased = confirm("Lowercased Characters?");
+    if (lowerCased) {
+      passwordOptions.push(lowerCasedCharacters);
+    }
+    console.log(passwordOptions);
     
     // length of password wanted
     var length = parseInt(prompt("How many characters?"));
@@ -114,58 +132,20 @@ function getPasswordOptions() {
     alert("10 to 64 characters.");
   }
 
-    var options = {
-      length: length,
-      special: special,
-      numeric: numeric,
-      upperCased: upperCased,
-      lowerCased: lowerCased,
-    }
-    return options;
-   
+  return passwordOptions;
+  
 }
 
 // Function for getting a password element from an array
-function getpassword() {
-  var randomPassword = passwordOptions[Math.floor(Math.password() * passwordOptions.length)];
-  return randomPassword;
+function getRandom(arr) {
+  var passIndex = Math.floor(Math.random() * arr.length);
+  var passElement = arr[passIndex];
+  return passElement;
 }
 
 // Function to generate password with user input
 function generatePassword() {
 
-// calls booleons in options object
-  var options = getPasswordOptions();
-
-// get password character
-  var passwordOptions = [];
-
-// return 1 random password
-  var result = [],
-
-  // push characters into passwordOptions if Yes
-  if (options.special) {
-    passwordOptions.push(getpassword(...specialCharacters));
-  }
-  console.log(passwordOptions);
-
-  if (options.numeric) {
-    passwordTypes = [...numericCharacters];
-    passwordOptions.push(getpassword(...numericCharacters));
-  }
-  console.log(passwordOptions);
-
-  if (options.upperCased) {
-    passwordOptions.push(getpassword(...upperCasedCharacters));
-  }
-  console.log(passwordOptions);
-
-  if (options.lowerCased) {
-    passwordOptions.push(getpassword(...lowerCasedCharacters));
-  }
-  console.log(passwordOptions);
-
-  return result;
 }
 
 // Get references to the #generate element
