@@ -88,49 +88,39 @@ var upperCasedCharacters = [
   'Z'
 ];
 
-
 // Function to prompt user for password options
 function getPasswordOptions() {
-  // empty array to store pushed options on confirm
-    var passwordOptions = [];
 
     // Special Characters
     var special = confirm("Special Characters?");
-    if (special) {
-      passwordOptions.push(specialCharacters);
-    }
-    console.log(passwordOptions);
     
     // Numeric Characters
     var numeric = confirm("Numeric Characters?");
-    if (numeric) {
-      passwordOptions.push(numericCharacters);
-    }
-    console.log(passwordOptions);
     
     // Uppercased Characters
     var upperCased = confirm("Uppercased Characters?");
-    if (upperCased) {
-      passwordOptions.push(upperCasedCharacters);
-    }
-    console.log(passwordOptions);
-    
+
     // Lowercased Characters
     var lowerCased = confirm("Lowercased Characters?");
-    if (lowerCased) {
-      passwordOptions.push(lowerCasedCharacters);
-    }
-    console.log(passwordOptions);
     
     // length of password wanted
     var length = parseInt(prompt("How many characters?"));
 
-  // Checks if length is not less than 10 and noit greater than 64
-   if (length >=10 && length <=64) {
-    console.log(length);
-  } else {
-    alert("10 to 64 characters.");
-  }
+    // Checks if length is not less than 10 and noit greater than 64
+    if (length >=10 && length <=64) {
+      console.log(length);
+    } else {
+      alert("10 to 64 characters.");
+    }
+
+    var passwordOptions = {
+      length: length,
+      special: special,
+      numeric: numeric,
+      upperCased: upperCased,
+      lowerCased: lowerCased
+    };
+    console.log(passwordOptions)
 
   return passwordOptions;
   
@@ -138,13 +128,53 @@ function getPasswordOptions() {
 
 // Function for getting a password element from an array
 function getRandom(arr) {
-  var passIndex = Math.floor(Math.random() * arr.length);
-  var passElement = arr[passIndex];
-  return passElement;
+  var randIndex = Math.floor(Math.random() * arr.length);
+  var randElement = arr[randIndex];
+  return randElement;
 }
 
 // Function to generate password with user input
 function generatePassword() {
+
+  var options = getPasswordOptions();
+  var result = [];
+  var possible = [];
+  var guaranteed = [];
+
+  if (options.special) {
+    possible = possible.concat(specialCharacters);
+    guaranteed.push(getRandom(specialCharacters));
+  }
+  console.log(possible);
+  console.log(guaranteed);
+
+  if (options.numeric) {
+    possible = possible.concat(numericCharacters);
+    guaranteed.push(getRandom(numericCharacters));
+  }
+
+  if (options.lowerCased) {
+    possible = possible.concat(lowerCasedCharacters);
+    guaranteed.push(getRandom(lowerCasedCharacters));
+  }
+
+  if (options.upperCased) {
+    possible = possible.concat(upperCasedCharacters);
+    guaranteed.push(getRandom(upperCasedCharacters));
+  }
+
+  for (var i = 0; i < options.length; i++) {
+    var possibleCharacter = getRandom(possible);
+
+    result.push(possibleCharacter);
+  }
+
+  for (var i = 0; i < guaranteed.length; i++) {
+    result[i] = guaranteed[i];
+  }
+  console.log(result);
+
+  return result.join('');
 
 }
 
